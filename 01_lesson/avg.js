@@ -13,7 +13,7 @@ do {
     console.log(`Текущая сумма всех введенных чисел: ${summary}.`)
     console.log(`Текущее среднее арифмитическое: ${summary / count}.`);
 
-} while (!inputNum == '') 
+} while (!isNaN(inputNum)) 
 
 const avg = summary / count;
 alert(`Сумма всех чисел: ${summary}.\nСреднее арифмитическое: ${avg}.`);
