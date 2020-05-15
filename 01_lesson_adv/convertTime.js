@@ -8,7 +8,7 @@
 
 
 //const inputTime = prompt('Введите время', '').trim();
-const inputTime = '  34,  7  am '.trim().toLocaleLowerCase();
+const inputTime = '  10,  7  am '.trim().toLocaleLowerCase();
 const time = inputTime.match(/([0-9]+)/g);
 const timePeriod = inputTime.match(/[amp]+/g);
 
@@ -28,14 +28,6 @@ if (timePeriod === null) {
     }
 } else {
     if (timePeriod[0] === 'pm' &&
-        hour < 12 &&
-        hour >= 0 &&
-        min >= 0 &&
-        min <= 59) {
-        hour = hour + 12;
-        if (String(min).length === 1) min = '0' + min
-        console.log(`Время: ${hour}:${min}`)
-    } else if (timePeriod[0] === 'pm' &&
         hour > 12 &&
         hour < 24 &&
         min >= 0 &&
@@ -43,22 +35,12 @@ if (timePeriod === null) {
         if (String(min).length === 1) min = '0' + min
         console.log(`Время: ${hour}:${min}`)
     } else if (timePeriod[0] === 'am' &&
-        hour >= 12 &&
-        hour <= 24 &&
-        min >= 0 &&
-        min <= 59) {
-        hour = hour - 12;
-        if (String(min).length === 1) min = '0' + min
-        if (String(hour).length === 1) hour = '0' + hour
-        console.log(`Время: ${hour}:${min}`)
-    } else if (timePeriod[0] === 'am' &&
-        hour < 12 &&
+        hour <= 12 &&
         hour >= 0 &&
         min >= 0 &&
         min <= 59) {
         if (String(min).length === 1) min = '0' + min
         if (String(hour).length === 1) hour = '0' + hour
         console.log(`Время: ${hour}:${min}`)
-    }
-    else console.log('Не верно указано время')
+    } else console.log('Не верно указано время')
 }
