@@ -5,13 +5,18 @@ const testText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d
 let resultText = '';
 let newLine = '';
 const words = testText.split(' ');
-for (let i = 0; i < words.length; i++)
-{
-    if (newLine.length < maxLength) {
-        newLine += ' ' + words[i]
+const end = words.length - 1;
+for (let i = 0; i < words.length; i++) {
+    if (newLine.length + words[i].length < maxLength) {
+        newLine += words[i] + ' '
+        console.log(i + ' ' + (words.length - 1))
     } else {
         resultText += newLine + '\n';
         newLine = words[i]
+    }
+    if (i === end) {
+        console.log('конец')
+        resultText += newLine
     }
 }
 console.log(resultText);
