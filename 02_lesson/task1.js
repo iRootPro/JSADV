@@ -3,16 +3,13 @@
 // количество отрицательных элементов массива.
 
 const inputArray = (...items) => {
-    let count = 0
+    let total = 0
     let sum = 0
     arr = items.filter(item => item < 0)
-    for (let a of arr) {
-        sum += a
-        count++
-    }
+    total = arr.reduce((sum, element) => sum += element)
     return {
-        count,
-        sum
+        count: arr.length,
+        sum: total
     }
 }
 
