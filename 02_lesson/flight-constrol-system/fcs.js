@@ -204,5 +204,54 @@ function eRegistration(ticket, fullName, nowTime) {
     return true
 }
 
-let statusReg = eRegistration('BH118-B50', 'Ivanov I. I.', makeTime(9, 10))
+let statusReg = eRegistration('BH118-B50', 'Ivanov I. I.', makeTime(11, 10))
 console.log(statusReg)
+
+/**
+ * Отчет о рейсе на данный момент
+ * 
+ * @typedef {Object} Report
+ * @property {string} flight Номер рейса
+ * @property {boolean} registration Доступна регистрация на самолет
+ * @property {boolean} complete Регистрация завершена или самолет улетел
+ * @property {number} countOfSeats Общее количество мест
+ * @property {number} reservedSeats Количество купленных (забронированных) мест
+ * @property {number} registeredSeats Количество пассажиров, прошедших регистрацию
+ */
+
+/**
+ * Функция генерации отчета по рейсу
+ * 
+ *  * проверка рейса
+ *  * подсчет
+ * 
+ * @param {string} flight номер рейса
+ * @param {number} nowTime текущее время
+ * @returns {Report} отчет
+ */
+function flightReport(flight, nowTime) {
+    let registration = false
+    let complete = false
+    let countReg = 0
+    if (!(flight in flights)) throw new Error('Такого рейса не существует')
+    if (nowTime >= flights[flight].registrationStarts &&
+        nowTime <= flights[flight].registartionEnds) registration = true
+    if (nowTime > flights[flight].registartionEnds) complete = true
+    const registeredSeats = flights[flight].tickets.forEach(ticket => {
+        if (ticket.registrationTime) countReg++
+    })
+
+    const report = {
+        flight,
+        registration,
+        complete,
+        seats: flights[flight].seats,
+        reservedSeats: flights[flight].tickets.length,
+        registeredSeats: countReg
+
+    }
+    return report
+}
+
+report = flightReport('BH118', makeTime(10, 5))
+console.table(report)
