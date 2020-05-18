@@ -180,26 +180,25 @@ function flightDetails(flightName) {
  * @returns boolean успешна ли регистрация
  */
 function eRegistration(ticket, fullName, nowTime) {
-    const allFlights = Object.keys(flights).forEach(flight => {
-        const allTickets = flights[flight].tickets
-        for (let searchedTicket of allTickets) {
-            if (ticket === searchedTicket.id) {
-                if (fullName !== searchedTicket.fullName) {
-                    throw new Error('Билет зарегистрирован на другого пассажира!')
-                }
-                if (nowTime <= flights[flight].registrationStarts ||
-                    nowTime >= flights[flight].registartionEnds) {
-                    throw new Error('Регистрация еще/уже недоступна')
-                } else {
-                    console.log('Регистрирую')
-                    searchedTicket.registrationTime = nowTime
-                    return true
-                }
+    const needFlight = ticket.split('-')[0]
+    const allTickets = flights[needFlight].tickets
+    for (let searchedTicket of allTickets) {
+        if (ticket === searchedTicket.id) {
+            if (fullName !== searchedTicket.fullName) {
+                throw new Error('Билет зарегистрирован на другого пассажира!')
+            }
+            if (nowTime <= flights[needFlight].registrationStarts ||
+                nowTime >= flights[needFlight].registartionEnds) {
+                throw new Error('Регистрация еще/уже недоступна')
+            }
+            console.log('Регистрирую')
+            searchedTicket.registrationTime = nowTime
+            return true
 
-            } else continue
-            return false
-        }
-    })
+
+        } else continue
+        return false
+    }
 
     return true
 }
