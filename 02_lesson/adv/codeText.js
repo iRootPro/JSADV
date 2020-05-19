@@ -53,15 +53,17 @@ const encodeText = inputText => {
             continue
         }
 
-        for (let wordFromObj of dictionary) {
-            if (word === wordFromObj.word)
+        const index = dictionary.findIndex(findObject => {
+            return findObject.word === word
+        })
 
-            {
-                wordFromObj.count++
-                continue
-            }
+
+        if (index !== -1) 
+        {
+            dictionary[index].count++
+            encodedText += code + ','
+            continue
         }
-
         do {
             code = uniqCode()
             for (let codeFromObj of dictionary) {
