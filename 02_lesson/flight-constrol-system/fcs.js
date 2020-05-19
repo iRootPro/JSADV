@@ -254,3 +254,51 @@ function flightReport(flight, nowTime) {
 
 report = flightReport('BH118', makeTime(10, 5))
 console.table(report)
+
+
+/**
+ * Функция возврата билета
+ * 
+ *  * проверка рейса
+ *  * проверка билета
+ *  * вернуть билет можно если до рейса не менее 3 часов
+ *  * вернуть билет можно если не бизнес класс
+ * 
+ * @param {string} ticket номер билета
+ * @param {number} nowTime текущее время
+ * @returns {boolean} удалось ли отменить билет
+ */
+function revertTicket(ticket, nowTime) {
+    const flight = ticket.split('-')[0]
+    if (!(flight in flights)) {
+        throw new Error('Нет такого рейса')
+    }
+
+    const indexTicket = flights[flight].tickets.findIndex(searchTicket => {
+        return searchTicket.id === ticket
+    })
+
+    if (indexTicket === -1) {
+        throw new Error('Такого билета не существует')
+    }
+
+    if (flights[flight].tickets[indexTicket].type !== 0) {
+        throw new Error('Вернуть билет можно только эконом-класса')
+    }
+
+    const diffTimeHour = (flights[flight].registartionEnds - nowTime) / 1000 / 3600
+
+    if (diffTimeHour <= 3) {
+        throw new Error('Билет вернуть нельзя. Вернуть билет можно только не менее чем за 3 часа до вылета')
+    }
+
+    console.log('Билет можно вернуть')
+    flights[flight].tickets.splice(indexTicket)
+    console.log(`Билет ${ticket} анулирован`)
+
+    return true
+
+}
+
+
+let isRevert = revertTicket('BH118-B50', makeTime(10, 5)) // true
