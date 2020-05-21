@@ -10,9 +10,8 @@
  */
 
 const sumOfPositive = (numbers) => {
-    if (numbers.length === 0 ||
-        typeof numbers === 'number' ||
-        typeof numbers === 'string')
+    if(!Array.isArray(numbers)) return 'Invalid data'
+    if (numbers.length === 0)
         return 'Invalid data'
 
 
