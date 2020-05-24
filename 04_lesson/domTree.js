@@ -37,3 +37,11 @@ function getChild2(layer) {
 
 getChild2(layer)
 
+
+
+function displayNode(node, deep = 0) {
+    console.log('--'.repeat(deep), node.nodeName);
+    for (let item = node.firstChild; item; item = item.nextSibling)
+        displayNode(item, deep + 1);
+}
+displayNode(document.documentElement);
