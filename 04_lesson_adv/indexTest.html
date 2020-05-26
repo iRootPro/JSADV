@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test changeHTML function</title>
+    <!-- подключаем стили Mocha, для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <!-- подключаем библиотеку Mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <!-- настраиваем Mocha: предстоит BDD-тестирование -->
+    <script>
+        mocha.setup('bdd');
+    </script>
+</head>
+
+<body>
+    <div id="item1">
+        <h3 data-field="title">Some title</h3>
+        <p data-field="description"></p>
+    </div>
+
+    <div id="item2">
+        <h3 data-field="head">Some title</h3>
+        <p data-field="desc"></p>
+    </div>
+
+
+    <div id="item3">
+        <h3 data-field="header">Some title</h3>
+        <p data-field="info"></p>
+    </div>
+
+    <div id="item4">
+        <h3 data-field="abc">Some title</h3>
+        <p data-field="desc"></p>
+    </div>
+
+    <div id="item5">
+        <h3 data-field="title"></h3>
+        <p data-field="abc">Test description</p>
+    </div>
+
+    <div id="item6">
+        <h3 data-field="title"></h3>
+        <p data-field="desc">Test description</p>
+    </div>
+
+   <div id="item7">
+        <h3 data-field="title"></h3>
+        <p data-field="desc">Test description</p>
+    </div>
+
+    <div id="mocha"></div>
+    <script src="./changeHTML.js"></script>
+    <script src="./changeHTMLTest.js"></script>
+    <script>
+        mocha.run()
+    </script>
+
+
+    <!-- подключаем chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <!-- в chai есть много всего, выносим assert в глобальную область -->
+    <script>
+        var assert = chai.assert;
+        var expect = chai.expect;
+    </script>
+</body>
+
+</html>
