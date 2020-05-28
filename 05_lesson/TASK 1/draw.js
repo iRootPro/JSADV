@@ -12,7 +12,8 @@ createSquare(10);
 
 //Функция изменяет цвет кисти
 function changeColor() {
-  if (event.target.tagName === "TD") colorBrush = event.target.dataset.color;
+  if (event.target.tagName === "TD") 
+    colorBrush = event.target.dataset.color;
 }
 
 // Функция меняет цвет ячейки
@@ -25,7 +26,8 @@ function drawColorCell() {
 function showPalette() {
   if (divPalette.style.visibility === "visible")
     divPalette.style.visibility = "hidden";
-  else divPalette.style.visibility = "visible";
+  else 
+    divPalette.style.visibility = "visible";
 }
 
 /**
