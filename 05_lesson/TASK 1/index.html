@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>events</title>
+    <style>
+        table div{
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+        }
+
+        table tr td {
+            width: 10px;
+            height: 10px;
+            border: 1px solid gray;
+        }
+        #palette { visibility: hidden; }
+    </style>
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" id="holst">
+
+</table>
+
+<div id="selectColor">
+    <button id="btnColor">Выбрать цвет</button>
+</div>
+<div id="palette">
+    <table cellspacing="0" cellpadding="0" id="tableColor">
+        <tr>
+            <td data-color="red" style="background-color: red;"></td>
+            <td data-color="green" style="background-color: green;"></td>
+            <td data-color="grey" style="background-color: grey;"></td>
+        </tr>
+        <tr>
+            <td data-color="indigo" style="background-color: indigo;"></td>
+            <td data-color="lawngreen" style="background-color: lawngreen;"></td>
+            <td data-color="lightskyblue" style="background-color: lightskyblue;"></td>
+        </tr>
+        <tr>
+            <td data-color="mediumblue" style="background-color: mediumblue;"></td>
+            <td data-color="orange" style="background-color: orange;"></td>
+            <td data-color="yellow" style="background-color: yellow;"></td>
+        </tr>
+    </table>
+</div>
+   
+<script src="draw.js"></script>
+</body>
+
+</html>
